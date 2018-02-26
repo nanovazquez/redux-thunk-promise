@@ -6,7 +6,7 @@
   "scripts": {
     "lint": "tslint -c tslint.json 'src/**/*.ts'",
     "test": "mocha -r ts-node/register test/**/*.test.ts",
-    "coverage": "nyc report --reporter=text-lcov | coveralls",
+    "coverage": "nyc --reporter=lcov --reporter=text-lcov npm test",
     "build": "tsc"
   },
   "repository": {
@@ -34,6 +34,7 @@
     "coveralls": "^3.0.0",
     "eslint": "^4.18.1",
     "mocha": "^5.0.1",
+    "nyc": "^11.4.1",
     "sinon": "^4.4.2",
     "ts-node": "^5.0.0",
     "tslint": "^5.9.1",
