@@ -4,6 +4,7 @@
     "tslint:recommended"
   ],
   "rules": {
-    "quotemark": [true, "single", "jsx-double"]
+    "quotemark": [true, "single", "jsx-double"],
+    "max-line-length": [true, 300]
   }
 }
