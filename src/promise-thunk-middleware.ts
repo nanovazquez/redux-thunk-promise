@@ -1,4 +1,4 @@
-import { isFSA, isFunction, isThenable } from "./utils";
+import { isFSA, isFunction, isThenable } from './utils';
 
 /*
  * This middleware will take care of handling both
