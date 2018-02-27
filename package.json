@@ -6,7 +6,7 @@
   "scripts": {
     "lint": "tslint -c tslint.json 'src/**/*.ts'",
     "test": "mocha -r ts-node/register test/**/*.test.ts",
-    "coverage": "nyc --reporter=lcov --reporter=text-lcov npm test",
+    "coverage": "nyc --reporter=lcov npm test",
     "coveralls": "npm run coverage | coveralls",
     "build": "tsc"
   },
