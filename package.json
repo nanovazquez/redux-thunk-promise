@@ -5,9 +5,8 @@
   "main": "src/index.ts",
   "scripts": {
     "lint": "tslint -c tslint.json 'src/**/*.ts'",
-    "test": "mocha -r ts-node/register test/**/*.test.ts",
-    "coverage": "nyc --reporter=lcov npm test",
-    "coveralls": "npm run coverage | coveralls",
+    "test": "NODE_ENV=test mocha -r ts-node/register test/**/*.test.ts",
+    "coveralls": "NODE_ENV=test nyc npm test | coveralls",
     "build": "tsc"
   },
   "repository": {
@@ -27,6 +26,23 @@
     "url": "https://github.com/nanovazquez/redux-thunk-promise/issues"
   },
   "homepage": "https://github.com/nanovazquez/redux-thunk-promise#readme",
+  "nyc": {
+    "include": [
+      "src/**/*.ts"
+    ],
+    "exclude": [
+      "typings",
+      "src/**/index.ts"
+    ],
+    "extension": [
+      ".ts"
+    ],
+    "require": [
+      "ts-node/register"
+    ],
+    "reporter": ["text", "text-lcov"],
+    "all": true
+  },
   "devDependencies": {
     "@types/chai": "^4.1.2",
     "@types/mocha": "^2.2.48",
