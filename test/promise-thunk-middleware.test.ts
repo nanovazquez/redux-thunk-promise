@@ -40,18 +40,15 @@ describe('promiseThunkMiddleware unit tests', () => {
 
     describe('and action is a thunk', () => {
       beforeEach(() => {
-        actionResult = 'action result';
         expectedResult = 'expected result';
         action = stub();
-        action.returns(actionResult);
-        dummyStore.dispatch.returns(expectedResult);
+        action.returns(expectedResult);
         return (result = actionHandler(action));
       });
 
       it('should not call next handler', () => expect(dummyNext.called).to.be.false);
       it('should execute action', () => expect(action.calledWith({ dispatch: dummyStore.dispatch, getState: dummyStore.getState })).to.be.true);
-      it('should dispatch the result of the action', () => expect(dummyStore.dispatch.calledWith(actionResult)).to.be.true);
-      it('should return the result of the dispatch', () => expect(result).to.be.equal(expectedResult));
+      it('should return the result of the action', () => expect(result).to.be.equal(expectedResult));
     });
 
     describe('and action is an FSA with a promise in the payload', () => {

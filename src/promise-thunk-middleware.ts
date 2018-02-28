@@ -8,7 +8,7 @@ import { isFSA, isFunction, isThenable } from './utils';
 function createPromiseThunkMiddleware(extraArguments: object = {}): any {
   return ({ dispatch, getState }) => (next) => (action) => {
     if (isFunction(action)) {
-      return dispatch(action({ dispatch, getState, ...extraArguments }));
+      return action({ dispatch, getState, ...extraArguments });
     }
 
     if (isFSA(action) && isThenable(action.payload)) {
@@ -20,7 +20,6 @@ function createPromiseThunkMiddleware(extraArguments: object = {}): any {
         },
       );
     }
-
     return next(action);
   };
 }
