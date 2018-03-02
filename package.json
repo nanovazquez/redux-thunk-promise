@@ -10,7 +10,7 @@
     "lint": "tslint -c tslint.json 'src/**/*.ts'",
     "test": "NODE_ENV=test mocha -r ts-node/register test/**/*.test.ts",
     "coveralls": "NODE_ENV=test nyc npm test | coveralls",
-    "build": "rm -rf dist && tsc",
+    "build": "rm -rf dist && webpack --mode development",
     "semantic-release": "semantic-release",
     "prestart": "npm run build && cd examples/react-todo-list && npm i",
     "start": "cd examples/react-todo-list && npm start"
@@ -65,8 +65,11 @@
     "redux": "^3.7.2",
     "semantic-release": "^15.0.0",
     "sinon": "^4.4.2",
+    "ts-loader": "^4.0.0",
     "ts-node": "^5.0.0",
     "tslint": "^5.9.1",
-    "typescript": "^2.7.2"
+    "typescript": "^2.7.2",
+    "webpack": "^4.0.1",
+    "webpack-cli": "^2.0.10"
   }
 }
