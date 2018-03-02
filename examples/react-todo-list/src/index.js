@@ -5,11 +5,12 @@ import { Provider } from 'react-redux';
 import { TodoList } from './components';
 import { reducers } from './domain';
 
-import promiseThunkMiddleware from 'promise-thunk-middleware';
+// import thunkPromiseMiddleware from 'redux-thunk-promise';
+import thunkPromiseMiddleware from '../../../dist';
 
 const store = createStore(
   combineReducers(reducers),
-  applyMiddleware(promiseThunkMiddleware),
+  applyMiddleware(thunkPromiseMiddleware),
 );
 
 ReactDOM.render(

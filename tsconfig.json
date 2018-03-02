@@ -1,11 +1,12 @@
 {
   "compileOnSave": true,
   "compilerOptions": {
-    "outDir": "dist",
-    // "outFile": "dist/index.js",
-    "module": "umd",
-    "sourceMap": false,
-    "target": "es2015"
+    "outDir": "./dist",
+    "module": "es6",
+    "target": "ES2015",
+    "jsx": "react",
+    "allowJs": true,
+    "sourceMap": true
   },
   "include": [
     "src/**/*"
