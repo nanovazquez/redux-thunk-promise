@@ -1,11 +1,11 @@
 import { expect } from 'chai';
 import 'mocha';
 import { applyMiddleware, createStore } from 'redux';
-import promiseThunkMiddleware from '../src/promise-thunk-middleware';
+import thunkPromiseMiddleware from '../src/thunk-promise-middleware';
 
 // Examples taken from https://github.com/reactjs/redux/blob/master/docs/api/applyMiddleware.md
 // FSA taken from here https://github.com/redux-utilities/flux-standard-action
-describe('promiseThunkMiddleware unit tests', () => {
+describe('thunkPromiseMiddleware unit tests', () => {
   let expectedResult;
   let syncAction;
   let promiseAction;
@@ -54,7 +54,7 @@ describe('promiseThunkMiddleware unit tests', () => {
     return createStore(
       reducers,
       {},
-      applyMiddleware(promiseThunkMiddleware),
+      applyMiddleware(thunkPromiseMiddleware),
     );
   }
 });

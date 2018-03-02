@@ -2,9 +2,9 @@ import { expect } from 'chai';
 import 'mocha';
 import { spy, stub } from 'sinon';
 
-import promiseThunkMiddleware from '../src/promise-thunk-middleware';
+import thunkPromiseMiddleware from '../src/thunk-promise-middleware';
 
-describe('promiseThunkMiddleware unit tests', () => {
+describe('thunkPromiseMiddleware unit tests', () => {
   let dummyStore;
   let middlewareFunction;
   let dummyNext;
@@ -87,7 +87,7 @@ describe('promiseThunkMiddleware unit tests', () => {
 
   function initMiddleware() {
     dummyStore = { dispatch: stub(), getState: 'getState' };
-    middlewareFunction = promiseThunkMiddleware(dummyStore);
+    middlewareFunction = thunkPromiseMiddleware(dummyStore);
     dummyNext = stub();
     actionHandler = middlewareFunction(dummyNext);
   }

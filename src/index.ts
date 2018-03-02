@@ -1,2 +1,2 @@
-import promiseThunkMiddleware from './promise-thunk-middleware';
-export default promiseThunkMiddleware;
+import thunkPromiseMiddleware from './thunk-promise-middleware';
+export default thunkPromiseMiddleware;

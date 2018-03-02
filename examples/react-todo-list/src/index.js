@@ -1,13 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { createStore, combineReducers } from 'redux';
+import { applyMiddleware, createStore, combineReducers } from 'redux';
 import { Provider } from 'react-redux';
 import { TodoList } from './components';
 import { reducers } from './domain';
-// import promiseThunkMiddleware from '../../../dist';
 
-const store = createStore(combineReducers(reducers));
-// applyMiddleware(promiseThunkMiddleware)
+import promiseThunkMiddleware from 'promise-thunk-middleware';
+
+const store = createStore(
+  combineReducers(reducers),
+  applyMiddleware(promiseThunkMiddleware),
+);
 
 ReactDOM.render(
   <Provider store={store}>

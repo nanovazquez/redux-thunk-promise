@@ -7,6 +7,7 @@
   "license": "MIT",
   "scripts": {
     "lint": "eslint src",
+    "prestart": "cp -r ../../dist node_modules/redux-thunk-promise/dist && cp ../../package.json node_modules/redux-thunk-promise",
     "start": "webpack-dev-server --mode development"
   },
   "dependencies": {
