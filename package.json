@@ -8,7 +8,9 @@
     "test": "NODE_ENV=test mocha -r ts-node/register test/**/*.test.ts",
     "coveralls": "NODE_ENV=test nyc npm test | coveralls",
     "build": "tsc",
-    "semantic-release": "semantic-release"
+    "semantic-release": "semantic-release",
+    "prestart": "npm run build && cd examples/react-todo-list && npm i",
+    "start": "cd examples/react-todo-list && webpack-dev-server"
   },
   "repository": {
     "type": "git",
