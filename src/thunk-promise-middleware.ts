@@ -5,7 +5,7 @@ import { isFSA, isFunction, isThenable } from './utils';
  * promises and thunks to manage async interactions
  * (e.g. get information from a backend service).
  */
-function createPromiseThunkMiddleware(extraArguments: object = {}): any {
+function createThunkPromiseMiddleware(extraArguments: object = {}): any {
   return ({ dispatch, getState }) => (next) => (action) => {
     if (isFunction(action)) {
       return action({ dispatch, getState, ...extraArguments });
@@ -24,7 +24,7 @@ function createPromiseThunkMiddleware(extraArguments: object = {}): any {
   };
 }
 
-const promiseThunkMiddleware = createPromiseThunkMiddleware();
-promiseThunkMiddleware.withExtraArgument = createPromiseThunkMiddleware;
+const thunkPromiseMiddleware = createThunkPromiseMiddleware();
+thunkPromiseMiddleware.withExtraArgument = createThunkPromiseMiddleware;
 
-export default promiseThunkMiddleware;
+export default thunkPromiseMiddleware;
