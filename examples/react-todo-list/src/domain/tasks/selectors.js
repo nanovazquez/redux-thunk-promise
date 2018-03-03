@@ -1,4 +1,4 @@
-const tasks = state => state.tasks;
+const tasks = state => state.tasks.items;
 
 export default {
   tasks,

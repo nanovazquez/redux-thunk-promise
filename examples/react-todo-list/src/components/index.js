@@ -1,4 +1,4 @@
-import TodoList from './TodoList.container';
+import TodoList from './TodoList';
 
 export default TodoList;
 export { TodoList };

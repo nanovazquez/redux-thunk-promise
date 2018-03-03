@@ -1,11 +1,12 @@
-const HtmlWebPackPlugin = require("html-webpack-plugin");
+/* eslint-disable */
+const HtmlWebPackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   entry: [
     './src/index.js'
   ],
   externals: {
-    "react": "React",
+    'react': 'React',
     'react-dom': 'ReactDOM',
   },
   module: {
@@ -14,14 +15,18 @@ module.exports = {
         test: /\.js$/,
         exclude: /node_modules/,
         use: {
-          loader: "babel-loader"
+          loader: 'babel-loader'
         }
+      },
+      {
+        test: /\.css$/,
+        use: ['css-loader']
       },
       {
         test: /\.html$/,
         use: [
           {
-            loader: "html-loader",
+            loader: 'html-loader',
             options: { minimize: true }
           }
         ]
@@ -30,8 +35,8 @@ module.exports = {
   },
   plugins: [
     new HtmlWebPackPlugin({
-      template: "./src/index.html",
-      filename: "./index.html"
+      template: './src/index.html',
+      filename: './index.html'
     })
   ]
 };

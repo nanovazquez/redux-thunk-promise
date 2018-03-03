@@ -2,10 +2,13 @@
   "compileOnSave": true,
   "compilerOptions": {
     "outDir": "./dist",
-    "module": "es6",
+    "module": "umd",
     "target": "es6",
     "jsx": "react",
     "allowJs": true,
     "sourceMap": true
-  }
+  },
+  "include": [
+    "../src/**/*"
+  ],
 }

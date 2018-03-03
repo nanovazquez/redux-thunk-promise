@@ -1,8 +1,27 @@
 const validFSAKeys = ['type', 'payload', 'error', 'meta'];
 
 /*
- * Checks if the argument received is a Flux Standard Action.
+ * Dispatches the result of a Promise either a success or an error.
+ * @param action - The element to be evaluated.
+ * @param dispatch - The element to be evaluated.
+ * @param promise - The element to be evaluated.
+ * @return {Promise} - The promise
+ */
+function dispatchPromiseResult(promise: Promise<any>, action: any, dispatch: any) {
+  return promise
+    .then(
+      (result) => dispatch({ ...action, payload: result }),
+      (error) => {
+        dispatch({ ...action, payload: error, error: true });
+        return Promise.reject(error);
+    });
+}
+
+/*
+ * Checks if the argument received is a Flux Standard Action (FSA).
  * For more info, see https://github.com/redux-utilities/flux-standard-action#actions
+ * @param action - The element to be evaluated.
+ * @return {boolean} - True if the argument is a FSA. False otherwise.
  */
 function isFSA(action: any = {}): boolean {
   // Action is an object
@@ -26,12 +45,15 @@ function isThenable(action: any = {}): boolean {
 /*
  * Checks if the argument received is a function.
  * For more info, see https://github.com/gaearon/redux-thunk#whats-a-thunk
+ * @param action - The element to be evaluated.
+ * @return {boolean} - True if the argument is a function. False otherwise.
  */
 function isFunction(action: any = {}): boolean {
   return typeof action === 'function';
 }
 
 export {
+  dispatchPromiseResult,
   isFSA,
   isThenable,
   isFunction,

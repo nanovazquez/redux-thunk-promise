@@ -8,8 +8,9 @@
   ],
   "scripts": {
     "lint": "tslint -c tslint.json 'src/**/*.ts'",
-    "test": "NODE_ENV=test mocha -r ts-node/register test/**/*.test.ts",
-    "coveralls": "NODE_ENV=test nyc npm test | coveralls",
+    "test": "NODE_ENV=test TS_NODE_PROJECT=test/tsconfig.json mocha --require ts-node/register test/**/*.ts",
+    "coverage": "nyc npm test",
+    "coveralls": "nyc npm test | coveralls",
     "build": "rm -rf dist && webpack --mode development",
     "semantic-release": "semantic-release",
     "prestart": "npm run build && cd examples/react-todo-list && npm i",
