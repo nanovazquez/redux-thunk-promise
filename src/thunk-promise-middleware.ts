@@ -1,4 +1,4 @@
-import { isFSA, isFunction, isThenable } from './utils';
+import { dispatchPromiseResult, isFSA, isFunction, isThenable } from './utils';
 
 /*
  * This middleware will take care of handling both
@@ -7,19 +7,26 @@ import { isFSA, isFunction, isThenable } from './utils';
  */
 function createThunkPromiseMiddleware(extraArguments: object = {}): any {
   return ({ dispatch, getState }) => (next) => (action) => {
+    // If action is a thunk, execute it
     if (isFunction(action)) {
       return action({ dispatch, getState, ...extraArguments });
     }
 
+    // If action is a FSA with a thenable as payload,
+    // wait for the result and then dispatch it
     if (isFSA(action) && isThenable(action.payload)) {
-      return action.payload.then(
-        (result) => dispatch({ ...action, payload: result }),
-        (error) => {
-          dispatch({ ...action, payload: error, error: true });
-          return Promise.reject(error);
-        },
-      );
+      return dispatchPromiseResult(action.payload, action, dispatch);
     }
+
+    // If action is an FSA with a thunk as payload,
+    // execute it and then wait for the result (if it's a thenable)
+    if (isFSA(action) && isFunction(action.payload)) {
+      const payloadResult = action.payload({ dispatch, getState, ...extraArguments });
+      if (payloadResult && isThenable(payloadResult)) {
+        return dispatchPromiseResult(payloadResult, action, dispatch);
+      }
+    }
+
     return next(action);
   };
 }

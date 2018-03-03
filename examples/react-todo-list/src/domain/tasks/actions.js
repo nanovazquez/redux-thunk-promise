@@ -1,3 +1,5 @@
+import { createAction } from 'redux-actions';
+
 import actionTypes from './action-types';
 import tasksService from './tasks-service';
 import { actions as uiActions } from '../ui';
@@ -5,36 +7,13 @@ import { actions as uiActions } from '../ui';
 const fetchTasksFromService = () => ({ dispatch }) => {
   dispatch(uiActions.isLoading(true));
 
-  return tasksService.fetchTasks()
-    .then((result) => {
-      // The result of the call is already handled by the middleware
-      // and sent as payload of the FETCH_TASKS action
-      // Here we only need to execute our business logic
-      dispatch(uiActions.isLoading(false));
-      return result;
-    })
-    .catch((error) => {
-      // The error is already handled by the middleware
-      // and sent as payload of the FETCH_TASKS action
-      // Here we only need to execute our business logic
-      dispatch(uiActions.isLoading(false));
-      return error;
-    });
+  // The result of the call will be sent to reducers
+  // as the payload of the FETCH_TASKS action. If there
+  // was an error, action.error will be set to true
+  return tasksService.fetchTasks();
 };
 
-// Use a tool like redux-actions to reduce the boilerplate
-// We'll use the basic approach to simplify the example.
-const fetchTasks = () => ({
-  type: actionTypes.IS_LOADING,
-  payload: fetchTasksFromService,
-});
-
-const updateTaskStatus = payload => ({
-  type: actionTypes.UPDATE_TASK_STATUS,
-  payload,
-});
-
 export default {
-  fetchTasks,
-  updateTaskStatus,
+  fetchTasks: createAction(actionTypes.FETCH_TASKS, fetchTasksFromService),
+  updateTaskStatus: createAction(actionTypes.UPDATE_TASK_STATUS),
 };

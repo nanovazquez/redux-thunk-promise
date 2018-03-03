@@ -10,6 +10,7 @@ import thunkPromiseMiddleware from '../../../dist';
 
 const store = createStore(
   combineReducers(reducers),
+  {},
   applyMiddleware(thunkPromiseMiddleware),
 );
 

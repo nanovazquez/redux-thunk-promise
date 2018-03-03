@@ -1,11 +1,4 @@
-import actions from './actions';
-import actionTypes from './action-types';
-import reducers from './reducers';
-import selectors from './selectors';
-
-export {
-  actions,
-  actionTypes,
-  reducers,
-  selectors,
-};
+export { default as actions } from './actions';
+export { default as actionTypes } from './action-types';
+export { default as reducers } from './reducers';
+export { default as selectors } from './selectors';
