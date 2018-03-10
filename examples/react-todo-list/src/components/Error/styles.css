@@ -1,0 +1,12 @@
+.error {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 28px;
+  text-align: center;
+}
+
+.error-message {
+  font-style: italic;
+  margin: 20px 80px;
+}

@@ -10,7 +10,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   fetchTasks: () => dispatch(actions.fetchTasks()),
-  updateTaskStatus: (task, status) => dispatch(actions.updateTaskStatus({ task, status })),
+  completeTask: taskId => dispatch(actions.completeTask({ id: taskId })),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(TodoList);

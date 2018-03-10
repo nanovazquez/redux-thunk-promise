@@ -15,5 +15,5 @@ const fetchTasksFromService = () => ({ dispatch }) => {
 
 export default {
   fetchTasks: createAction(actionTypes.FETCH_TASKS, fetchTasksFromService),
-  updateTaskStatus: createAction(actionTypes.UPDATE_TASK_STATUS),
+  completeTask: createAction(actionTypes.COMPLETE_TASK),
 };

@@ -1,0 +1,11 @@
+.loading {
+  display: flex;
+  align-items: center;
+  font-size: 28px;
+}
+
+.loading-indicator {
+  width: 28px;
+  margin-left: 15px;
+  stroke: rgba(175, 47, 47, 0.25);
+}

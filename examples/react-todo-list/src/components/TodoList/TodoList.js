@@ -2,18 +2,20 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './styles.css';
 
+import { Error, Loading, Tasks } from '../';
+
 const propTypes = {
   tasks: PropTypes.arrayOf(PropTypes.shape({
-    id: PropTypes.number,
+    id: PropTypes.string,
     description: PropTypes.string,
     status: PropTypes.string,
   })),
   isLoading: PropTypes.bool,
   error: PropTypes.shape({
     message: PropTypes.string,
-    stack: PropTypes.string,
   }),
   fetchTasks: PropTypes.func.isRequired,
+  completeTask: PropTypes.func.isRequired,
 };
 
 const defaultProps = {
@@ -39,56 +41,30 @@ class TodoList extends React.PureComponent {
   }
 
   renderTasksSection() {
-    const { isLoading, error, tasks } = this.props;
+    const { isLoading, error, tasks, completeTask } = this.props;
 
     if (isLoading) {
-      return (
-        <div className={styles.loading}>Loading tasks...</div>
-      );
+      return <Loading />;
     }
 
     if (error) {
-      return (
-        <div className={styles.error}>
-          <p>
-            <span>There was an error when loading the tasks..</span>
-            <br />
-            <span>{ error.message }</span>
-          </p>
-        </div>
-      );
+      return <Error error={error} />;
     }
 
-    if (!tasks) {
-      return (
-        <div className={styles.tasks}>No tasks to do. Enjoy!</div>
-      );
-    }
-
-    return (
-      <ul className={styles.tasks}>
-        {
-          tasks.map(task => (
-            <li key={task.id} className={styles.task}>
-              <div className={`${styles.status} ${task.status.toLowerCase().replace(/ /g, '-')}`} />
-              <span className={styles.description}>{ task.description }</span>
-            </li>
-          ))
-        }
-      </ul>
-    );
+    return <Tasks tasks={tasks} completeTask={completeTask} />;
   }
 
   render() {
     return (
       <div className={styles.todoList}>
         <header className={styles.header}>
-          <h1>TODO List!</h1>
-          <button onClick={this.handleRefreshButtonClick}>Update!</button>
+          <h1 className={styles.title}>todos</h1>
+          <button className={styles.refreshButton} onClick={this.handleRefreshButtonClick} />
         </header>
-        <section className={styles.body}>
+        <section className={styles.content}>
           { this.renderTasksSection() }
         </section>
+        <footer className={styles.footer} />
       </div>
     );
   }

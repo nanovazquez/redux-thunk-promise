@@ -10,4 +10,16 @@ export default handleActions({
     ...state,
     items: !action.error ? action.payload : [],
   }),
+  [actionTypes.COMPLETE_TASK]: (state, action) => {
+    const { id } = action.payload;
+    const newItems = state.items.map(item => ({
+      ...item,
+      isDone: item.id === id || item.isDone,
+    }));
+
+    return {
+      ...state,
+      items: newItems,
+    };
+  },
 }, initialState);

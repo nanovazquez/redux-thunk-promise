@@ -4,6 +4,8 @@
     "browser": true
   },
   "rules": {
-    "react/jsx-filename-extension": ["error", { "extensions": [".js", ".jsx"] }]
+    "react/jsx-filename-extension": ["error", { "extensions": [".js", ".jsx"] }],
+    "react/prefer-stateless-function": ["off", { "ignorePureComponents": true }],
+    "object-curly-newline": ["error", { "consistent": true, "minProperties": 5 }]
   }
 }

@@ -1,5 +1,6 @@
 /* eslint-disable */
 const HtmlWebPackPlugin = require('html-webpack-plugin');
+const ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 module.exports = {
   entry: [
@@ -20,7 +21,8 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        use: ['css-loader']
+        exclude: /node_modules/,
+        use: ExtractTextPlugin.extract({ fallback: "style-loader", use: "css-loader?modules=true&camelCase=true" })
       },
       {
         test: /\.html$/,
@@ -30,10 +32,15 @@ module.exports = {
             options: { minimize: true }
           }
         ]
+      },
+      {
+        test: /\.svg$/,
+        loader: 'svg-react-loader'
       }
     ]
   },
   plugins: [
+    new ExtractTextPlugin("styles.css"),
     new HtmlWebPackPlugin({
       template: './src/index.html',
       filename: './index.html'
