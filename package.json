@@ -1,7 +1,7 @@
 {
   "name": "redux-thunk-promise",
   "version": "0.0.0-development",
-  "description": "Thunk and promise middleware for Redux",
+  "description": "Thunk and FSA promise middleware for Redux",
   "main": "dist/index.js",
   "files": [
     "dist"
