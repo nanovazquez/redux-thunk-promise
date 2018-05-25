@@ -1,8 +1,8 @@
 export default {
   fetchTasks: () => new Promise((resolve, reject) => {
     setTimeout(() => {
-      // 50% of the time the call fails
-      if (Math.random() > 0.5) {
+      // 5% of the time the call fails
+      if (Math.random() > 0.95) {
         return reject(new Error('The network connection has failed (try again)'));
       }
 

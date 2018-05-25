@@ -19,7 +19,7 @@ const propTypes = {
 };
 
 const defaultProps = {
-  tasks: undefined,
+  tasks: [],
   isLoading: false,
   error: undefined,
 };
@@ -31,8 +31,11 @@ class TodoList extends React.PureComponent {
   }
 
   componentDidMount() {
-    const { fetchTasks } = this.props;
-    fetchTasks();
+    const { fetchTasks, tasks } = this.props;
+
+    if (!tasks.length) {
+      fetchTasks();
+    }
   }
 
   handleRefreshButtonClick() {
