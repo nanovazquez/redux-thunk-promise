@@ -1,9 +1,8 @@
 import { dispatchPromiseResult, isFSA, isFunction, isThenable } from './utils';
 
-/*
- * This middleware will take care of handling both
- * promises and thunks to manage async interactions
- * (e.g. get information from a backend service).
+/***
+ * Middleware that takes care of handling both promises and thunks
+ * to manage async interactions (e.g. get information from a backend service).
  */
 function createThunkPromiseMiddleware(extraArguments: object = {}): any {
   return ({ dispatch, getState }) => (next) => (action) => {

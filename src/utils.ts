@@ -1,11 +1,11 @@
 const validFSAKeys = ['type', 'payload', 'error', 'meta'];
 
-/*
- * Dispatches the result of a Promise either a success or an error.
- * @param action - The element to be evaluated.
- * @param dispatch - The element to be evaluated.
- * @param promise - The element to be evaluated.
- * @return {Promise} - The promise
+/***
+ * Dispatches the result of a Promise that could be either a success or an error.
+ * @param promise The promise whose result will be dispatched.
+ * @param action The action to dispatch.
+ * @param dispatch The dispatch function provided by the middleware.
+ * @returns The promise whose result will be dispatched.
  */
 function dispatchPromiseResult(promise: Promise<any>, action: any, dispatch: any) {
   return promise
@@ -17,11 +17,11 @@ function dispatchPromiseResult(promise: Promise<any>, action: any, dispatch: any
     });
 }
 
-/*
- * Checks if the argument received is a Flux Standard Action (FSA).
+/**
+ * Checks if an action is a Flux Standard Action (FSA).
  * For more info, see https://github.com/redux-utilities/flux-standard-action#actions
- * @param action - The element to be evaluated.
- * @return {boolean} - True if the argument is a FSA. False otherwise.
+ * @param action The action to be evaluated
+ * @returns `true` if the action received via argument is an FSA.
  */
 function isFSA(action: any = {}): boolean {
   // Action is an object
@@ -32,21 +32,21 @@ function isFSA(action: any = {}): boolean {
     && Object.keys(action).every((key) => validFSAKeys.indexOf(key) !== -1);
 }
 
-/*
- * Checks if the argument received is a thenable.
+/**
+ * Checks if an action is thenable.
  * For more info, see https://promisesaplus.com/#point-53
- * @param action - The element to be evaluated.
- * @return {boolean} - True if the argument is a thenable. False otherwise.
+ * @param action The action to be evaluated
+ * @returns `true` if the action received via argument is a thenable.
  */
 function isThenable(action: any = {}): boolean {
   return typeof action.then === 'function';
 }
 
-/*
- * Checks if the argument received is a function.
+/**
+ * Checks if an action a function.
  * For more info, see https://github.com/gaearon/redux-thunk#whats-a-thunk
- * @param action - The element to be evaluated.
- * @return {boolean} - True if the argument is a function. False otherwise.
+ * @param action The element to be evaluated.
+ * @return `true` if the action received via argument is a function.
  */
 function isFunction(action: any = {}): boolean {
   return typeof action === 'function';

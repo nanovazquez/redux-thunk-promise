@@ -2,19 +2,20 @@
   "name": "redux-thunk-promise",
   "version": "0.0.0-development",
   "description": "Thunk and FSA promise middleware for Redux",
-  "main": "dist/index.js",
+  "main": "lib/index.js",
+  "types": "lib/types/index.d.ts",
   "files": [
-    "dist"
+    "lib"
   ],
   "scripts": {
     "lint": "tslint -c tslint.json 'src/**/*.ts'",
     "test": "NODE_ENV=test TS_NODE_PROJECT=test/tsconfig.json mocha --require ts-node/register test/**/*.ts",
     "coverage": "nyc npm test",
     "coveralls": "nyc npm test | coveralls",
-    "build": "rm -rf dist && webpack --mode development",
-    "semantic-release": "semantic-release",
-    "prestart": "npm run build && cd examples/react-todo-list && npm i",
-    "start": "cd examples/react-todo-list && npm start"
+    "build:dev": "NODE_ENV=development webpack --mode development",
+    "build:prod": "NODE_ENV=production webpack --mode production",
+    "build": "rm -rf lib && npm run build:dev && npm run build:prod",
+    "semantic-release": "semantic-release"
   },
   "repository": {
     "type": "git",
@@ -54,23 +55,20 @@
     "all": true
   },
   "devDependencies": {
-    "@types/chai": "^4.1.2",
-    "@types/mocha": "^2.2.48",
-    "@types/redux": "^3.6.0",
-    "@types/sinon": "^4.1.3",
     "chai": "^4.1.2",
-    "coveralls": "^3.0.0",
-    "eslint": "^4.18.1",
-    "mocha": "^5.0.1",
-    "nyc": "^11.4.1",
-    "redux": "^3.7.2",
-    "semantic-release": "^15.0.0",
-    "sinon": "^4.4.2",
-    "ts-loader": "^4.0.0",
-    "ts-node": "^5.0.0",
-    "tslint": "^5.9.1",
-    "typescript": "^2.7.2",
-    "webpack": "^4.6.0",
-    "webpack-cli": "^2.0.15"
+    "copy-webpack-plugin": "^4.5.1",
+    "coveralls": "^3.0.1",
+    "eslint": "^4.19.1",
+    "mocha": "^5.2.0",
+    "nyc": "^11.8.0",
+    "redux": "^4.0.0",
+    "semantic-release": "^15.5.0",
+    "sinon": "^5.0.10",
+    "ts-loader": "^4.3.0",
+    "tslint": "^5.10.0",
+    "tslint-react": "^3.6.0",
+    "typescript": "^2.8.3",
+    "webpack": "^4.9.0",
+    "webpack-cli": "^2.1.4"
   }
 }

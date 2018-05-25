@@ -1,10 +1,13 @@
 {
   "defaultSeverity": "error",
   "extends": [
-    "tslint:recommended"
+    "tslint:recommended",
+    "tslint-react"
   ],
   "rules": {
     "quotemark": [true, "single", "jsx-double"],
-    "max-line-length": [true, 300]
+    "max-line-length": [true, 300],
+    "ordered-imports": [false],
+    "jsx-curly-spacing": ["error", "never", { "allowMultiline": true }]
   }
 }
