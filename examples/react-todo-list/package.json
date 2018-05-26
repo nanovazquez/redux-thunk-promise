@@ -7,6 +7,7 @@
   "license": "MIT",
   "scripts": {
     "lint": "eslint src",
+    "prestart": "cd ../.. && npm run build",
     "start": "webpack-dev-server --mode development",
     "build": "webpack --mode production"
   },
