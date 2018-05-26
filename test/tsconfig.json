@@ -1,14 +1,11 @@
 {
-  "compileOnSave": true,
+  "extends": "../tsconfig.json",
   "compilerOptions": {
-    "outDir": "./dist",
-    "module": "umd",
-    "target": "es6",
-    "jsx": "react",
-    "allowJs": true,
-    "sourceMap": true
+    "module": "commonjs",
+    "target": "es2015"
   },
   "include": [
-    "../src/**/*"
-  ],
+    "../src/**/*",
+    "../test/**/*"
+  ]
 }

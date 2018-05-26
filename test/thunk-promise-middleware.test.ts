@@ -1,5 +1,5 @@
-import { expect } from 'chai';
 import 'mocha';
+import { expect } from 'chai';
 import { spy, stub } from 'sinon';
 
 import thunkPromiseMiddleware from '../src/thunk-promise-middleware';
@@ -15,8 +15,13 @@ describe('thunkPromiseMiddleware unit tests', () => {
   describe('when it is initialized', () => {
     beforeEach(() => initMiddleware());
 
-    it('should return a function', () => expect(middlewareFunction).to.be.a('function'));
-    it('middleware function should return a function', () => expect(actionHandler).to.be.a('function'));
+    it('should return a function', () => {
+      expect(middlewareFunction).to.be.a('function');
+    });
+
+    it('middleware function should return a function', () => {
+      expect(actionHandler).to.be.a('function');
+    });
   });
 
   describe('when actionHandler function is executed', () => {
@@ -33,9 +38,17 @@ describe('thunkPromiseMiddleware unit tests', () => {
         return (result = actionHandler(action));
       });
 
-      it('should not call dispatch', () => expect(dummyStore.dispatch.called).to.be.false);
-      it('should execute next handler with action', () => expect(dummyNext.calledWith(action)).to.be.true);
-      it('should return result of next handler', () => expect(result).to.be.equal(expectedResult));
+      it('should not call dispatch', () => {
+        expect(dummyStore.dispatch.called).to.be.false;
+      });
+
+      it('should execute next handler with action', () => {
+        expect(dummyNext.calledWith(action)).to.be.true;
+      });
+
+      it('should return result of next handler', () => {
+        expect(result).to.be.equal(expectedResult);
+      });
     });
 
     describe('and action is a thunk', () => {
@@ -46,9 +59,17 @@ describe('thunkPromiseMiddleware unit tests', () => {
         return (result = actionHandler(action));
       });
 
-      it('should not call next handler', () => expect(dummyNext.called).to.be.false);
-      it('should execute action', () => expect(action.calledWith({ dispatch: dummyStore.dispatch, getState: dummyStore.getState })).to.be.true);
-      it('should return the result of the action', () => expect(result).to.be.equal(expectedResult));
+      it('should not call next handler', () => {
+        expect(dummyNext.called).to.be.false;
+      });
+
+      it('should execute action', () => {
+        expect(action.calledWith({ dispatch: dummyStore.dispatch, getState: dummyStore.getState })).to.be.true;
+      });
+
+      it('should return the result of the action', () => {
+        expect(result).to.be.equal(expectedResult);
+      });
     });
 
     describe('and action is an FSA with a promise in the payload', () => {
@@ -62,10 +83,21 @@ describe('thunkPromiseMiddleware unit tests', () => {
           return (result = actionHandler(action));
         });
 
-        it('should not call next handler', () => expect(dummyNext.called).to.be.false);
-        it('should execute the thenable', () => expect(action.payload.then.called).to.be.true);
-        it('should dispatch the result of the thenable', () => expect(dummyStore.dispatch.calledWith({ ...action, payload: actionResult })).to.be.true);
-        it('should return the result of the dispatch', () => expect(result).to.be.equal(expectedResult));
+        it('should not call next handler', () => {
+          expect(dummyNext.called).to.be.false;
+        });
+
+        it('should execute the thenable', () => {
+          expect(action.payload.then.called).to.be.true;
+        });
+
+        it('should dispatch the result of the thenable', () => {
+          expect(dummyStore.dispatch.calledWith({ ...action, payload: actionResult })).to.be.true;
+        });
+
+        it('should return the result of the dispatch', () => {
+          expect(result).to.be.equal(expectedResult);
+        });
       });
 
       describe('if promise fails', () => {
@@ -77,10 +109,21 @@ describe('thunkPromiseMiddleware unit tests', () => {
             .catch((error) => result = error);
         });
 
-        it('should not call next handler', () => expect(dummyNext.called).to.be.false);
-        it('should execute the thenable', () => expect(action.payload.then.called).to.be.true);
-        it('should dispatch the error', () => expect(dummyStore.dispatch.calledWith({ ...action, payload: expectedResult, error: true })).to.be.true);
-        it('should return a rejected promise with an error', () => expect(result).to.be.equal(expectedResult));
+        it('should not call next handler', () => {
+          expect(dummyNext.called).to.be.false;
+        });
+
+        it('should execute the thenable', () => {
+          expect(action.payload.then.called).to.be.true;
+        });
+
+        it('should dispatch the error', () => {
+          expect(dummyStore.dispatch.calledWith({ ...action, payload: expectedResult, error: true })).to.be.true;
+        });
+
+        it('should return a rejected promise with an error', () => {
+          expect(result).to.be.equal(expectedResult);
+        });
       });
     });
   });

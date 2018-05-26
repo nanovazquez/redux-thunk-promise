@@ -1,5 +1,5 @@
-import { expect } from 'chai';
 import 'mocha';
+import { expect } from 'chai';
 import { applyMiddleware, createStore } from 'redux';
 import thunkPromiseMiddleware from '../src/thunk-promise-middleware';
 
@@ -26,12 +26,16 @@ describe('thunkPromiseMiddleware unit tests', () => {
 
   describe('sync action', () => {
     beforeEach(() => store.dispatch(syncAction));
-    it('should update the state', () => expect(store.getState()[syncAction.type]).to.be.equal(expectedResult));
+    it('should update the state', () => {
+      expect(store.getState()[syncAction.type]).to.be.equal(expectedResult);
+    });
   });
 
   describe('promise action', () => {
     beforeEach(() => store.dispatch(promiseAction));
-    it('should update the state', () => expect(store.getState()[promiseAction.type]).to.be.equal(expectedResult));
+    it('should update the state', () => {
+      expect(store.getState()[promiseAction.type]).to.be.equal(expectedResult);
+    });
   });
 
   describe('thunk action', () => {
@@ -40,7 +44,9 @@ describe('thunkPromiseMiddleware unit tests', () => {
       actionType = 'ADD_TODO_THUNK';
       return store.dispatch(thunkAction(actionType));
     });
-    it('should update the state', () => expect(store.getState()[actionType]).to.be.equal(expectedResult));
+    it('should update the state', () => {
+      expect(store.getState()[actionType]).to.be.equal(expectedResult);
+    });
   });
 
   function createReduxStore() {
