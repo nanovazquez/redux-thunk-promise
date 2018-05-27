@@ -45,9 +45,6 @@
     "extension": [
       ".ts"
     ],
-    "require": [
-      "ts-node/register"
-    ],
     "reporter": [
       "text",
       "text-lcov"
