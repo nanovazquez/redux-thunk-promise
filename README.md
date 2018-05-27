@@ -75,11 +75,14 @@ Then, you can write your async actions in different ways:
     import { actions as uiActions } from '../ui';
 
     const fetchTasksFromService = () => ({ dispatch, getState, ...extraArguments }) => {
-      dispatch(actions.loadingTasks(true));
+      dispatch(uiActions.isLoading(true));
+
+      // The result of the call will be sent to reducers as the payload of the FETCH_TASKS action.
+      // If there was an error, action.error will be set to true
 
       return tasksService.fetchTasks()
-        .then(() => actions.loadingTasks(false))
-        .catch(() => actions.loadingTasks(false));
+        .then(() => actions.isLoading(false))
+        .catch(() => actions.isLoading(false));
     };
 
     export default {
