@@ -14,7 +14,7 @@ export default handleActions({
     const { id } = action.payload;
     const newItems = state.items.map(item => ({
       ...item,
-      isDone: item.id === id || item.isDone,
+      isCompleted: item.id === id || item.isCompleted,
     }));
 
     return {

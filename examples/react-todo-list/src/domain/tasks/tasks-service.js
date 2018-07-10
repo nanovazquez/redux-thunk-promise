@@ -7,11 +7,11 @@ export default {
       }
 
       return resolve([
-        { id: '1', description: 'Write the redux-thunk-promise library', isDone: true },
-        { id: '2', description: 'Add unit tests', isDone: true },
-        { id: '3', description: 'Add integration tests', isDone: true },
-        { id: '4', description: 'Create real-life example with React/Redux', isDone: false },
-        { id: '5', description: 'Blog post about this tool', isDone: false },
+        { id: '1', description: 'Write the redux-thunk-promise library', isCompleted: true },
+        { id: '2', description: 'Add unit tests', isCompleted: true },
+        { id: '3', description: 'Add integration tests', isCompleted: true },
+        { id: '4', description: 'Create real-life example with React/Redux', isCompleted: false },
+        { id: '5', description: 'Blog post about this tool', isCompleted: false },
       ]);
     }, 2500);
   }),

@@ -7,7 +7,7 @@ import { reducers } from './domain';
 
 import './index.css';
 
-// In a real app, the next line should be:
+// In a real app, this line would be:
 // import thunkPromiseMiddleware from 'redux-thunk-promise';
 import thunkPromiseMiddleware from '../../../lib';
 

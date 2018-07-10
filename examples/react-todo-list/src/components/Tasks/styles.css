@@ -24,17 +24,17 @@
   justify-content: center;
 }
 
-.task.is-done {
+.task.is-completed {
   pointer-events: none;
   opacity: 0.5;
 }
 
-.task.is-done .status:after {
+.task.is-completed .status:after {
   content: '✓';
   color: rgba(175, 47, 47, 1);
   line-height: 1em;
 }
 
-.task.is-done .description{
+.task.is-completed .description{
   text-decoration: line-through;
 }

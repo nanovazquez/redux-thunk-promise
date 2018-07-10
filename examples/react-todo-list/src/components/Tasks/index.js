@@ -6,7 +6,7 @@ const propTypes = {
   tasks: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.string,
     description: PropTypes.string,
-    isDone: PropTypes.bool,
+    isCompleted: PropTypes.bool,
   })),
   completeTask: PropTypes.func.isRequired,
 };
@@ -45,8 +45,8 @@ class Tasks extends React.PureComponent {
               role="presentation"
               key={task.id}
               data-id={task.id}
-              className={`${styles.task} ${task.isDone && styles.isDone}`}
-              onClick={styles.isDone && this.handleTaskClick}
+              className={`${styles.task} ${task.isCompleted && styles.isCompleted}`}
+              onClick={styles.isCompleted && this.handleTaskClick}
             >
               <div className={styles.status} />
               <span className={styles.description}>{ task.description }</span>
