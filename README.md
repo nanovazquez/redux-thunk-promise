@@ -93,7 +93,7 @@ Then, you can write your async actions in different ways:
     };
     ```
 
-> **Note:** No matter which approach you choose for your async actions, your reducers will receive an [FSA-compliant action](https://github.com/redux-utilities/flux-standard-action#example).
+No matter which approach you choose for your async actions, your reducers will always receive an [FSA-compliant action](https://github.com/redux-utilities/flux-standard-action#example).
 
 ### Using in combination with redux-actions
 
